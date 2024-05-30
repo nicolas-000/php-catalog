@@ -19,22 +19,23 @@ while ($row = $result->fetch_assoc()) {
 }
 echo "</div>
 <div class='carousel-inner'>";
-$result = $conn->query("SELECT idfotografias, ruta, productos_idproductos FROM fotografias");
+$result = $conn->query("SELECT idfotografias, ruta, productos_idproductos, nombre, marca, precio FROM fotografias LEFT JOIN productos ON fotografias.productos_idproductos = productos.idproductos");
+
 $counter = 0;
 while ($row = $result->fetch_assoc()) {
     echo "<div class='carousel-item";
-    if ($counter == 0){echo " active'>
-    <img src='img/". $row['ruta'] ."' class='d-block w-100' href='#producto". $row['productos_idproductos'] ."' alt='imagen-". $row['ruta'] ."'>
-    <div class='carousel-caption d-none d-md-block'>
-      <h5>Second slide label</h5>
-      <p>Some representative placeholder content for the second slide.</p>
+    if ($counter == 0){echo " active' style='height: 500px;'>
+    <a href='#producto". $row['productos_idproductos'] ."'><img src='img/". $row['ruta'] ."' class='d-block w-100 h-100 object-fit-fill' alt='imagen-". $row['ruta'] ."'></a>
+    <div class='carousel-caption d-none d-md-block text-success'>
+      <h4>$ ". $row['precio'] ."</h4>
+      <h5>". $row['marca'] ." - ". $row['nombre'] ."</h5>
     </div>
   </div>";} else {
-    "'>
-    <img src='img/". $row['ruta'] ."' class='d-block w-100' href='#producto". $row['productos_idproductos'] ."' alt='imagen-". $row['ruta'] ."'>
-    <div class='carousel-caption d-none d-md-block'>
-      <h5>Second slide label</h5>
-      <p>Some representative placeholder content for the second slide.</p>
+    echo "' style='height: 500px;'>
+    <a href='#producto". $row['productos_idproductos'] ."'><img src='img/". $row['ruta'] ."' class='d-block w-100 h-100 object-fit-fill' alt='imagen-". $row['ruta'] ."'></a>
+    <div class='carousel-caption d-none d-md-block text-success'>
+      <h4>$ ". $row['precio'] ."</h4>
+      <h5>". $row['marca'] ." - ". $row['nombre'] ."</h5>
     </div>
   </div>";
   }
