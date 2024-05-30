@@ -8,8 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 include 'templates/header.php';
+echo "<div class='container'>";
 include 'actions/carousel.php';
-echo "<div class='container'><div class='row'>";
+echo "</div><div class='container'><div class='row'>";
 include 'actions/read_products.php';
 echo "</div></div>";
 include 'templates/footer.php';
